@@ -1,0 +1,19 @@
+<launch>
+	
+	<arg name="show_image" default="1" />
+	
+    <rosparam file="$(find infnet)/cfg/waffle_pi_mask_param.yaml" />
+	
+    <node name="get_point_message" 
+        pkg="infnet" 
+        type="get_point_from_message.py"
+        output="screen"
+        args="$(arg show_image)">
+
+	<remap from="image_raw" to="/camera/rgb/image_raw"/>
+	<remap from="goal_centroid" to="/camera/img_centroid"/>
+	<remap from="goal_base" to="/camera/img_base"/>
+
+	</node>
+	
+</launch>

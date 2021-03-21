@@ -1,0 +1,18 @@
+<launch>
+
+   
+    <arg name="video" default="0" />
+	
+    <rosparam file="$(find infnet)/cfg/mask_params.yaml" />
+	
+    <node name="camera_node_mask" 
+        pkg="infnet" 
+        type="camera_node_mask.py"
+        args="$(arg video)"
+        output="screen">
+
+	<remap from="image_raw" to="/image_raw/mask"/>
+	<remap from="image_raw" to="/image_raw"/>
+	</node>
+	
+</launch>

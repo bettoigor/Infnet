@@ -1,0 +1,16 @@
+<launch>
+
+   
+    <arg name="video" default="0" />
+
+   
+    <node name="camera_node" 
+        pkg="turtle_infnet" 
+        type="camera_node.py"
+        args="$(arg video)"
+        output="screen">
+
+	<remap from="image_raw" to="/image_raw"/>
+	</node>
+	
+</launch>
