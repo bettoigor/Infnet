@@ -1,0 +1,32 @@
+<launch>
+
+   
+    <arg name="K_eu" default="0.25" />
+    <arg name="K_ev" default="0.25" />
+    <arg name="X_goal" default="320" />
+    <arg name="Y_goal" default="480" />
+    <arg name="max_lin" default="0.5" />
+    <arg name="max_ang" default="0.5" />   
+    <arg name="control_type" default="0"/>
+    <arg name="camera_height" default="0.1"/>
+    
+
+ 	<arg name="path" default="$(find turtlebot3_infnet)/cfg/"/>
+   
+    <node name="visual_servoing" 
+        pkg="infnet" 
+        type="turtlebot3_visual_servoing_ibvs.py"
+        args="$(arg K_eu) $(arg K_ev) $(arg X_goal) $(arg Y_goal) 
+        	 $(arg max_lin) $(arg max_ang) $(arg control_type) 
+        	 $(arg camera_height)"
+        output="screen">
+
+	<remap from="img_point" to="/camera/img_base"/>
+	<remap from="odom" to="/odom"/>
+	<remap from="cmd_vel" to="/cmd_vel"/>
+	<remap from="control_type" to="/control_type"/>
+	<remap from="camera_info" to="/camera/rgb/camera_info"/>
+
+	</node>
+	
+</launch>
